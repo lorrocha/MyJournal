@@ -1,11 +1,10 @@
-class EntriesController < ActionController::Base
-  before_action :set_entry, except: [:new, :create]
+class EntriesController < ApplicationController
+  before_action :set_entry, except: [:index, :new, :create, :destroy]
 
   def create
     @entry = Entry.new(entry_params)
-
     if @entry.save
-      redirect_to 'entries#show', notice: 'Entry was successfully created!'
+      redirect_to @entry, notice: 'Entry was successfully created!'
     else
       render action:'new'
     end
@@ -20,6 +19,7 @@ class EntriesController < ActionController::Base
   end
 
   def edit
+    binding.pry
   end
 
   def new
@@ -35,14 +35,18 @@ class EntriesController < ActionController::Base
   end
 
   def destroy
-    @entry.destroy
+    if Entry.destroy(params[:id])
+       redirect_to entries_path
+    else
+      redirect_to entries_path, notice: 'WARNING: The entry was not destroyed'
+    end
   end
 
   private
 
-  # def set_entry
-  #   @entry = Entry.find(params[:id])
-  # end
+  def set_entry
+    @entry = Entry.find(params[:id])
+  end
 
   def entry_params
     params.require(:entry).permit(:title, :description, :category_id)
