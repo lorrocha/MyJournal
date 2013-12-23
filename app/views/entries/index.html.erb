@@ -1,7 +1,7 @@
 <h1>Entries</h1>
 
 <p>
-  <%= link_to 'Add Article', new_article_path %>
+  <%= link_to 'Add Entry', new_entries_path %>
 </p>
 
 <br />
@@ -9,7 +9,7 @@
 <ul class="unstyled">
   <% @entries.each do |entry| %>
   <li>
-    <%= link_to entry.title, entry %>
+    <%= link_to entry.title, @entry %>
   </li>
   <% end %>
 </ul>

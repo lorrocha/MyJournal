@@ -1,17 +1,18 @@
 class EntriesController < ActionController::Base
-  before_action :set_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_entry, except: [:new, :create]
 
   def create
     @entry = Entry.new(entry_params)
 
     if @entry.save
-      redirect_to @entry, notice: 'Entry was successfully created!'
+      redirect_to 'entries#show', notice: 'Entry was successfully created!'
     else
       render action:'new'
     end
   end
 
   def show
+    @entry = Entry.find(params[:id])
   end
 
   def index
@@ -39,9 +40,9 @@ class EntriesController < ActionController::Base
 
   private
 
-  def set_entry
-    @entry = Entry.find(params[:id])
-  end
+  # def set_entry
+  #   @entry = Entry.find(params[:id])
+  # end
 
   def entry_params
     params.require(:entry).permit(:title, :description, :category_id)
