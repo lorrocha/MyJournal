@@ -1,6 +1,11 @@
 class EntriesController < ApplicationController
   before_action :set_entry, except: [:index, :new, :create, :destroy]
 
+# Make new entries
+  def new
+    @entry = Entry.new
+  end
+
   def create
     @entry = Entry.new(entry_params)
     if @entry.save
@@ -10,6 +15,7 @@ class EntriesController < ApplicationController
     end
   end
 
+  # Show the entries
   def show
     @entry = Entry.find(params[:id])
   end
@@ -18,11 +24,8 @@ class EntriesController < ApplicationController
     @entries = Entry.all
   end
 
+ #Edit the entries
   def edit
-  end
-
-  def new
-    @entry = Entry.new
   end
 
   def update
@@ -33,6 +36,7 @@ class EntriesController < ApplicationController
     end
   end
 
+ #destroy the entry
   def destroy
     if Entry.destroy(params[:id])
        redirect_to entries_path
