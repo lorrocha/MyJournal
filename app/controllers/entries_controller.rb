@@ -7,6 +7,7 @@ class EntriesController < ApplicationController
   end
 
   def create
+    binding.pry
     @entry = Entry.new(entry_params)
     if @entry.save
       redirect_to @entry, notice: 'Entry was successfully created!'
