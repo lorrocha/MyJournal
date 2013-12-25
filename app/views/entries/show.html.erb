@@ -9,6 +9,9 @@
   <strong>Description:</strong>
   <%= @entry.description %>
 </p>
+<p>
+<%= @entry.category.name unless @entry.category.nil? %>
+</p>
 
 <%= link_to 'Back', entries_path %>
 <%= link_to 'Edit', edit_entry_path %>
