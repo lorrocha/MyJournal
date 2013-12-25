@@ -1,0 +1,12 @@
+<p>
+  <strong>Category:</strong>
+  <%= @category.name %>
+</p>
+
+<%@category.entries.each do |entry|%>
+<p>
+  <%= link_to entry.title, entry_path(entry)%>
+</p>
+<%end%>
+
+<%= link_to 'Back', categories_path %>

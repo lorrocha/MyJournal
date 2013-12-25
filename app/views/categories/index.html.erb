@@ -9,7 +9,11 @@
 <ul class="unstyled">
   <% @categories.each do |cat| %>
   <li>
-    <%= cat.name %>
+    <%if cat.entries.count >= 1%>
+      <%= link_to cat.name, category_path(cat) %>
+    <%else%>
+      <%= cat.name %>
+    <%end%>
     <%= link_to 'Edit', edit_category_path(cat) %>
     <%= link_to 'Delete', category_path(cat), :method => 'delete' %>
   </li>

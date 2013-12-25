@@ -10,7 +10,7 @@
   <%= @entry.description %>
 </p>
 <p>
-<%= @entry.category.name unless @entry.category.nil? %>
+<%= link_to @entry.category.name, category_path(@entry.category) unless @entry.category.nil? %>
 </p>
 
 <%= link_to 'Back', entries_path %>
