@@ -26,7 +26,7 @@ class EntriesController < ApplicationController
   end
 
   def index
-    @entries = Entry.all
+    @entries = Entry.all.order("created_at DESC")
   end
 
  #Edit the entries
