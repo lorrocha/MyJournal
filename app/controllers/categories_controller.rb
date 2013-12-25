@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_cats, only: [:edit, :update]
+  before_action :set_cats, only: [:show, :edit, :update]
 
   def index
     @categories = Category.all
@@ -19,18 +19,27 @@ class CategoriesController < ApplicationController
     end
   end
 
-  #editting the entry
+  #editting the cat
   def edit
   end
 
   def update
-    binding.pry
     if @category.update(cat_params)
       redirect_to categories_path, notice: 'Category was successfully updated!'
     else
       render action: 'edit'
     end
   end
+
+  #destroy a cat
+  def destroy
+    if Category.destroy(params[:id])
+       redirect_to categories_path
+    else
+      redirect_to categories_path, notice: 'WARNING: The category was not destroyed'
+    end
+  end
+
 
   private
 

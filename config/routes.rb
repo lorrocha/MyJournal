@@ -3,7 +3,7 @@ Journal::Application.routes.draw do
   root to: 'entries#index'
 
   resources :entries
-  resources :categories, :only=>
+  resources :categories
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
