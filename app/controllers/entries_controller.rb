@@ -7,7 +7,11 @@ class EntriesController < ApplicationController
   end
 
   def create
-    binding.pry
+    if params["entry"][:title].empty?
+      raise 'WARNING: Entry not valid. Missing title.'
+    elsif params["entry"][:description].empty?
+      raise 'WARNING: Entry not valid. Missing description.'
+    end
     @entry = Entry.new(entry_params)
     if @entry.save
       redirect_to @entry, notice: 'Entry was successfully created!'
